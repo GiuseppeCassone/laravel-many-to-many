@@ -36,15 +36,6 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="technology" class="form-label">Tecnologie usate</label>
-            <input type="text" class="form-control @error('technology') is-invalid @enderror" id="technology" name="technology" value="{{old('technology') ?? $project->technology}}">
-            @error('technology')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
             <label for="repo_links" class="form-label">Link</label>
             <input type="text" class="form-control @error('repo_links') is-invalid @enderror" id="repo_links" name="repo_links" value="{{old('repo_links') ?? $project->repo_links}}">
             @error('repo_links')
@@ -63,6 +54,30 @@
                 @endforeach
 
             </select>
+        </div>
+        <div class="mb-4">
+            <label class="mb-2" for="">Technologies</label>
+            <div class="d-flex gap-4">
+
+                @foreach($technologies as $technology)
+                <div class="form-check ">
+                    <input 
+                        type="checkbox" 
+                        name="technologies[]"
+                        value="{{$technology->id}}" 
+                        class="form-check-input" 
+                        id="technology-{{$technology->id}}"
+                        @if($errors->any())
+                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}
+                        @else 
+                        {{ $project->technologies->contains($technology) ? 'checked' : '' }}                       
+                        @endif
+                    >                   
+                    <label for="technology-{{$technology->id}}" class="form-check-label">{{$technology->title}}</label>
+                </div>
+                @endforeach
+
+            </div>
         </div>
         
         <button type="submit" class="btn btn-primary">Salva</button>

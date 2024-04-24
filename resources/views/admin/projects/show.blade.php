@@ -23,7 +23,11 @@
             <hr>
             <p><strong>Descrizione: </strong>{{ $project->description }}</p>
             <hr>
-            <p><strong>Tecnologie utilizzate: </strong>{{$project->technology}}</p>
+            <p><strong>Tecnologie utilizzate: </strong>
+            @foreach($project->technologies as $technology)
+            {{$technology->title}}
+            @endforeach
+            </p>
             <hr>
             <p><strong>Link: </strong>{{$project->repo_links}}</p>
         </div>  
