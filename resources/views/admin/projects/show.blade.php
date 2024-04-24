@@ -16,6 +16,8 @@
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Elimina
                     </button>
+
+                    <a href="{{route('admin.projects.index')}}" class="btn btn-primary">Torna ai progetti</a>
             </div>
         </div>
         <div class="col-6">
